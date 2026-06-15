@@ -110,15 +110,16 @@ function ChatWidget() {
         >
           {messages.length === 0 && (
             <div className="flex flex-col items-center justify-center h-full text-center text-muted-foreground">
-              <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center mb-4">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center mb-1">
                 <Image
-                  src="/logo.png"
-                  alt="Tooth Talk AI"
-                  width={50}
-                  height={50}
-                  className="object-contain"
+                  src="/logo.svg"
+                  alt="DentWise AI"
+                  width={56}
+                  height={56}
+                  className="w-14 h-14 object-contain"
                 />
               </div>
+              <span className="text-[10px] font-bold tracking-wider text-primary uppercase mb-4">DentWise</span>
               <h3 className="text-lg font-semibold text-foreground mb-1">
                 Hi! I'm Riley 👋
               </h3>

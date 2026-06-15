@@ -28,8 +28,9 @@ export default async function WelcomeSection() {
         </div>
       </div>
 
-      <div className="lg:flex hidden items-center justify-center size-32 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full ">
-        <Image src="/logo.png" alt="DentWise" width={64} height={64} className="w-16 h-16" />
+      <div className="lg:flex hidden flex-col items-center justify-center size-32 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl gap-1">
+        <Image src="/logo.svg" alt="DentWise" width={48} height={48} className="w-12 h-12 h-auto" />
+        <span className="text-[10px] font-bold tracking-wider text-primary uppercase">DentWise</span>
       </div>
     </div>
   );

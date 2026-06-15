@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Modern Gradient representing health and technology -->
+    <linearGradient id="dentwise-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0ea5e9" />
+      <stop offset="50%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#4f46e5" />
+    </linearGradient>
+    <!-- Soft glow effect -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Outer Ring with Tech Nodes (represents AI / Digital Assistant) -->
+  <circle cx="256" cy="256" r="230" fill="none" stroke="url(#dentwise-grad)" stroke-width="8" stroke-dasharray="10 15" opacity="0.4" />
+  <circle cx="256" cy="256" r="210" fill="none" stroke="url(#dentwise-grad)" stroke-width="2" opacity="0.2" />
+
+  <!-- The stylized modern tooth shape -->
+  <!-- Left lobe of the tooth -->
+  <path d="M 256 120 C 200 120, 150 140, 140 220 C 130 280, 160 340, 180 390 C 190 415, 200 440, 210 440 C 220 440, 230 400, 240 370 C 245 355, 250 350, 256 350 Z" fill="url(#dentwise-grad)" />
+
+  <!-- Right lobe of the tooth -->
+  <path d="M 256 120 C 312 120, 362 140, 372 220 C 382 280, 352 340, 332 390 C 322 415, 312 440, 302 440 C 292 440, 282 400, 272 370 C 267 355, 262 350, 256 350 Z" fill="url(#dentwise-grad)" opacity="0.9" />
+
+  <!-- Sound/Speech waves (since it's a Voice/Chat AI assistant) -->
+  <path d="M 390 200 A 150 150 0 0 1 390 312" fill="none" stroke="url(#dentwise-grad)" stroke-width="12" stroke-linecap="round" opacity="0.8" />
+  <path d="M 420 170 A 200 200 0 0 1 420 342" fill="none" stroke="url(#dentwise-grad)" stroke-width="12" stroke-linecap="round" opacity="0.5" />
+  <path d="M 450 140 A 250 250 0 0 1 450 372" fill="none" stroke="url(#dentwise-grad)" stroke-width="12" stroke-linecap="round" opacity="0.2" />
+
+  <!-- Interactive Sparkle / AI Star -->
+  <path d="M 120 160 L 126 178 L 144 184 L 126 190 L 120 208 L 114 190 L 96 184 L 114 178 Z" fill="#38bdf8" filter="url(#glow)" />
+  <path d="M 200 80 L 203 89 L 212 92 L 203 95 L 200 104 L 197 95 L 188 92 L 197 89 Z" fill="#38bdf8" opacity="0.8" />
+</svg>

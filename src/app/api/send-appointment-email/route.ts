@@ -14,6 +14,7 @@ export async function POST(request: Request) {
       appointmentType,
       duration,
       price,
+      doctorLocation,
     } = body;
 
     // validate required fields
@@ -23,10 +24,10 @@ export async function POST(request: Request) {
 
     // send the email
     // do not use this in prod, only for testing purposes
-    const { data, error } = await resend.emails.send({
-      from: "Tooth Talk <no-reply@resend.dev>",
+    let sendResult = await resend.emails.send({
+      from: "DentWise <no-reply@resend.dev>",
       to: [userEmail],
-      subject: "Appointment Confirmation - Tooth Talk",
+      subject: "Appointment Confirmation - DentWise",
       react: AppointmentConfirmationEmail({
         doctorName,
         appointmentDate,
@@ -34,16 +35,45 @@ export async function POST(request: Request) {
         appointmentType,
         duration,
         price,
+        doctorLocation,
       }),
     });
 
-    if (error) {
-      console.error("Resend error:", error);
-      return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
+    if (sendResult.error) {
+      console.error("Initial Resend error:", sendResult.error);
+      
+      const errMsg = sendResult.error.message;
+      if (errMsg && errMsg.includes("testing emails to your own email address")) {
+        const match = errMsg.match(/\(([^)]+)\)/);
+        if (match && match[1]) {
+          const verifiedEmail = match[1];
+          console.log(`Fallback: Sending test email to Resend verified owner address: ${verifiedEmail}`);
+          
+          sendResult = await resend.emails.send({
+            from: "DentWise <no-reply@resend.dev>",
+            to: [verifiedEmail],
+            subject: "[Test Fallback] Appointment Confirmation - DentWise",
+            react: AppointmentConfirmationEmail({
+              doctorName,
+              appointmentDate,
+              appointmentTime,
+              appointmentType,
+              duration,
+              price,
+              doctorLocation,
+            }),
+          });
+        }
+      }
+    }
+
+    if (sendResult.error) {
+      console.error("Final Resend error:", sendResult.error);
+      return NextResponse.json({ error: "Failed to send email", details: sendResult.error.message }, { status: 500 });
     }
 
     return NextResponse.json(
-      { message: "Email sent successfully", emailId: data?.id },
+      { message: "Email sent successfully", emailId: sendResult.data?.id },
       { status: 200 }
     );
   } catch (error) {

@@ -47,17 +47,17 @@ export async function updateUserBio(bio: string) {
 export async function updateUserTheme(theme: string) {
   try {
     const user = await currentUser();
-    if (!user) throw new Error("Unauthorized");
+    if (!user) return { success: false, error: "Unauthorized" };
 
     const updatedUser = await prisma.user.update({
       where: { clerkId: user.id },
       data: { chatTheme: theme },
     });
 
-    return updatedUser;
-  } catch (error) {
-    console.log("Error in updateUserTheme", error);
-    throw error;
+    return { success: true, user: updatedUser };
+  } catch (error: any) {
+    console.error("Error in updateUserTheme:", error);
+    return { success: false, error: error?.message || "Unknown error" };
   }
 }
 

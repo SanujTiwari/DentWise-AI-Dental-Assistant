@@ -1,12 +1,15 @@
 import {
   Body,
+  Column,
   Container,
   Head,
   Heading,
+  Hr,
   Html,
   Img,
   Link,
   Preview,
+  Row,
   Section,
   Text,
 } from "@react-email/components";
@@ -18,6 +21,7 @@ interface AppointmentConfirmationEmailProps {
   appointmentType: string;
   duration: string;
   price: string;
+  doctorLocation?: string;
 }
 
 function AppointmentConfirmationEmail({
@@ -27,75 +31,167 @@ function AppointmentConfirmationEmail({
   appointmentType,
   duration,
   price,
+  doctorLocation = "DentWise Dental, Ranchi, Jharkhand",
 }: AppointmentConfirmationEmailProps) {
   return (
     <Html>
       <Head />
-      <Preview>Your dental appointment has been confirmed</Preview>
+      <Preview>Your dental appointment has been confirmed - DentWise</Preview>
       <Body style={main}>
         <Container style={container}>
-          <Section style={logoContainer}>
-            <Img
-              src="https://i.ibb.co.com/tRy6cC2/logo.png"
-              width="50"
-              height="50"
-              alt="Tooth Talk"
-              style={logo}
-            />
-            <Text style={logoText}>Tooth Talk</Text>
+          {/* Header with Logo */}
+          <Section style={headerSection}>
+            <Row>
+              <Column align="center">
+                <Img
+                  src="https://i.ibb.co.com/tRy6cC2/logo.png"
+                  width="48"
+                  height="48"
+                  alt="DentWise"
+                  style={logoImg}
+                />
+              </Column>
+            </Row>
+            <Text style={brandName}>DentWise</Text>
+            <Text style={brandTagline}>Dental Assistant Platform</Text>
           </Section>
 
-          <Heading style={h1}>Appointment Confirmed! 🦷</Heading>
-
-          <Text style={text}>Hi there,</Text>
-
-          <Text style={text}>
-            Your dental appointment has been successfully booked. Here are the details:
-          </Text>
-
-          <Section style={appointmentDetails}>
-            <Text style={detailLabel}>Doctor</Text>
-            <Text style={detailValue}>{doctorName}</Text>
-
-            <Text style={detailLabel}>Appointment Type</Text>
-            <Text style={detailValue}>{appointmentType}</Text>
-
-            <Text style={detailLabel}>Date</Text>
-            <Text style={detailValue}>{appointmentDate}</Text>
-
-            <Text style={detailLabel}>Time</Text>
-            <Text style={detailValue}>{appointmentTime}</Text>
-
-            <Text style={detailLabel}>Duration</Text>
-            <Text style={detailValue}>{duration}</Text>
-
-            <Text style={detailLabel}>Cost</Text>
-            <Text style={detailValue}>{price}</Text>
-
-            <Text style={detailLabel}>Location</Text>
-            <Text style={detailValue}>Dental Center</Text>
+          {/* Success Banner */}
+          <Section style={successBanner}>
+            <Text style={successIcon}>✅</Text>
+            <Heading style={successHeading}>Appointment Confirmed!</Heading>
+            <Text style={successSubtext}>
+              Your dental appointment has been successfully scheduled. We look forward to seeing you!
+            </Text>
           </Section>
 
-          <Text style={text}>
-            Please arrive 15 minutes early for your appointment. If you need to reschedule or
-            cancel, please contact us at least 24 hours in advance.
-          </Text>
+          {/* Appointment Details Card */}
+          <Section style={detailsCard}>
+            <Text style={cardTitle}>Appointment Details</Text>
+            <Hr style={cardDivider} />
 
+            {/* Doctor */}
+            <Row style={detailRow}>
+              <Column style={detailIconCol}>
+                <Text style={detailIconText}>👨‍⚕️</Text>
+              </Column>
+              <Column style={detailContentCol}>
+                <Text style={detailLabel}>Doctor</Text>
+                <Text style={detailValue}>{doctorName}</Text>
+              </Column>
+            </Row>
+
+            {/* Appointment Type */}
+            <Row style={detailRow}>
+              <Column style={detailIconCol}>
+                <Text style={detailIconText}>🦷</Text>
+              </Column>
+              <Column style={detailContentCol}>
+                <Text style={detailLabel}>Appointment Type</Text>
+                <Text style={detailValue}>{appointmentType}</Text>
+              </Column>
+            </Row>
+
+            {/* Date */}
+            <Row style={detailRow}>
+              <Column style={detailIconCol}>
+                <Text style={detailIconText}>📅</Text>
+              </Column>
+              <Column style={detailContentCol}>
+                <Text style={detailLabel}>Date</Text>
+                <Text style={detailValue}>{appointmentDate}</Text>
+              </Column>
+            </Row>
+
+            {/* Time */}
+            <Row style={detailRow}>
+              <Column style={detailIconCol}>
+                <Text style={detailIconText}>🕐</Text>
+              </Column>
+              <Column style={detailContentCol}>
+                <Text style={detailLabel}>Time</Text>
+                <Text style={detailValue}>{appointmentTime}</Text>
+              </Column>
+            </Row>
+
+            {/* Duration */}
+            <Row style={detailRow}>
+              <Column style={detailIconCol}>
+                <Text style={detailIconText}>⏱️</Text>
+              </Column>
+              <Column style={detailContentCol}>
+                <Text style={detailLabel}>Duration</Text>
+                <Text style={detailValue}>{duration}</Text>
+              </Column>
+            </Row>
+
+            {/* Cost */}
+            <Row style={detailRow}>
+              <Column style={detailIconCol}>
+                <Text style={detailIconText}>💰</Text>
+              </Column>
+              <Column style={detailContentCol}>
+                <Text style={detailLabel}>Consultation Fee</Text>
+                <Text style={detailValueHighlight}>{price}</Text>
+              </Column>
+            </Row>
+
+            {/* Location */}
+            <Row style={detailRow}>
+              <Column style={detailIconCol}>
+                <Text style={detailIconText}>📍</Text>
+              </Column>
+              <Column style={detailContentCol}>
+                <Text style={detailLabel}>Location</Text>
+                <Text style={detailValue}>{doctorLocation}</Text>
+              </Column>
+            </Row>
+          </Section>
+
+          {/* Important Notice */}
+          <Section style={noticeSection}>
+            <Text style={noticeTitle}>📋 Important Reminders</Text>
+            <Text style={noticeItem}>• Please arrive 15 minutes before your scheduled time</Text>
+            <Text style={noticeItem}>• Carry a valid photo ID and any previous dental records</Text>
+            <Text style={noticeItem}>• To reschedule or cancel, please inform us at least 24 hours in advance</Text>
+          </Section>
+
+          {/* CTA Button */}
           <Section style={buttonContainer}>
             <Link style={button} href={process.env.NEXT_PUBLIC_APP_URL + "/appointments"}>
-              View My Appointments
+              View My Appointments →
             </Link>
           </Section>
 
-          <Text style={footer}>
-            Best regards,
-            <br />
-            The Tooth Talk Team
-          </Text>
+          {/* Footer */}
+          <Hr style={footerDivider} />
 
-          <Text style={footerText}>
-            If you have any questions, please contact us at support@toothtalk.com
-          </Text>
+          <Section style={footerSection}>
+            <Row>
+              <Column align="center">
+                <Img
+                  src="https://i.ibb.co.com/tRy6cC2/logo.png"
+                  width="32"
+                  height="32"
+                  alt="DentWise"
+                  style={footerLogo}
+                />
+              </Column>
+            </Row>
+            <Text style={footerBrand}>DentWise</Text>
+            <Text style={footerText}>
+              Your trusted AI-powered dental assistant platform
+            </Text>
+            <Text style={footerContact}>
+              Need help? Reach us at{" "}
+              <Link href="mailto:support@dentwise.com" style={footerLink}>
+                support@dentwise.com
+              </Link>
+            </Text>
+            <Text style={footerCopyright}>
+              © {new Date().getFullYear()} DentWise. All rights reserved.
+            </Text>
+          </Section>
         </Container>
       </Body>
     </Html>
@@ -104,104 +200,217 @@ function AppointmentConfirmationEmail({
 
 export default AppointmentConfirmationEmail;
 
-// 🤡🤡🤡🤡🤡 styles that were generated using AI 🤡🤡🤡🤡🤡
+// ─── Styles ─────────────────────────────────────────────────────────────────
+
 const main = {
-  backgroundColor: "#ffffff",
+  backgroundColor: "#f0f4f8",
   fontFamily:
-    '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
+    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif',
 };
 
 const container = {
   margin: "0 auto",
-  padding: "20px 0 48px",
-  maxWidth: "560px",
+  padding: "40px 20px",
+  maxWidth: "600px",
 };
 
-const logoContainer = {
+const headerSection = {
   textAlign: "center" as const,
-  marginBottom: "32px",
+  padding: "32px 0 16px",
 };
 
-const logo = {
-  borderRadius: "8px",
-  display: "inline",
-  verticalAlign: "middle",
+const logoImg = {
+  borderRadius: "12px",
 };
 
-const logoText = {
-  fontSize: "20px",
-  fontWeight: "bold",
-  color: "#2563eb",
-  margin: "0",
-  display: "inline",
-  marginLeft: "12px",
+const brandName = {
+  fontSize: "22px",
+  fontWeight: "700",
+  color: "#1a7ab5",
+  margin: "12px 0 0 0",
+  letterSpacing: "-0.5px",
 };
 
-const h1 = {
-  color: "#1f2937",
-  fontSize: "24px",
-  fontWeight: "bold",
+const brandTagline = {
+  fontSize: "12px",
+  color: "#6b7280",
+  margin: "2px 0 0 0",
+  textTransform: "uppercase" as const,
+  letterSpacing: "1.5px",
+};
+
+const successBanner = {
+  backgroundColor: "#ffffff",
+  borderRadius: "16px",
+  padding: "32px 24px",
   textAlign: "center" as const,
-  margin: "30px 0",
-};
-
-const text = {
-  color: "#374151",
-  fontSize: "16px",
-  lineHeight: "26px",
-  margin: "16px 0",
-};
-
-const appointmentDetails = {
-  backgroundColor: "#f9fafb",
-  border: "1px solid #e5e7eb",
-  borderRadius: "8px",
-  padding: "24px",
   margin: "24px 0",
+  boxShadow: "0 1px 3px rgba(0, 0, 0, 0.08)",
+};
+
+const successIcon = {
+  fontSize: "40px",
+  margin: "0 0 8px 0",
+};
+
+const successHeading = {
+  color: "#111827",
+  fontSize: "26px",
+  fontWeight: "700",
+  margin: "8px 0",
+  letterSpacing: "-0.5px",
+};
+
+const successSubtext = {
+  color: "#6b7280",
+  fontSize: "15px",
+  lineHeight: "24px",
+  margin: "8px 0 0 0",
+};
+
+const detailsCard = {
+  backgroundColor: "#ffffff",
+  borderRadius: "16px",
+  padding: "24px",
+  margin: "0 0 16px 0",
+  boxShadow: "0 1px 3px rgba(0, 0, 0, 0.08)",
+};
+
+const cardTitle = {
+  fontSize: "16px",
+  fontWeight: "700",
+  color: "#111827",
+  margin: "0 0 8px 0",
+};
+
+const cardDivider = {
+  borderColor: "#e5e7eb",
+  margin: "12px 0 16px 0",
+};
+
+const detailRow = {
+  marginBottom: "16px",
+};
+
+const detailIconCol = {
+  width: "40px",
+  verticalAlign: "top" as const,
+};
+
+const detailIconText = {
+  fontSize: "18px",
+  margin: "0",
+  lineHeight: "1",
+};
+
+const detailContentCol = {
+  verticalAlign: "top" as const,
 };
 
 const detailLabel = {
-  color: "#6b7280",
-  fontSize: "14px",
+  color: "#9ca3af",
+  fontSize: "12px",
   fontWeight: "500",
-  margin: "8px 0 4px 0",
+  margin: "0",
+  textTransform: "uppercase" as const,
+  letterSpacing: "0.5px",
 };
 
 const detailValue = {
-  color: "#1f2937",
-  fontSize: "16px",
+  color: "#111827",
+  fontSize: "15px",
   fontWeight: "600",
-  margin: "0 0 16px 0",
+  margin: "2px 0 0 0",
+};
+
+const detailValueHighlight = {
+  color: "#1a7ab5",
+  fontSize: "16px",
+  fontWeight: "700",
+  margin: "2px 0 0 0",
+};
+
+const noticeSection = {
+  backgroundColor: "#fffbeb",
+  border: "1px solid #fde68a",
+  borderRadius: "12px",
+  padding: "20px 24px",
+  margin: "0 0 24px 0",
+};
+
+const noticeTitle = {
+  fontSize: "14px",
+  fontWeight: "700",
+  color: "#92400e",
+  margin: "0 0 12px 0",
+};
+
+const noticeItem = {
+  fontSize: "13px",
+  color: "#78350f",
+  lineHeight: "22px",
+  margin: "0",
 };
 
 const buttonContainer = {
   textAlign: "center" as const,
-  margin: "32px 0",
+  margin: "8px 0 32px 0",
 };
 
 const button = {
-  backgroundColor: "#2563eb",
-  borderRadius: "6px",
+  backgroundColor: "#1a7ab5",
+  borderRadius: "10px",
   color: "#ffffff",
-  fontSize: "16px",
+  fontSize: "15px",
   fontWeight: "600",
   textDecoration: "none",
   textAlign: "center" as const,
   display: "inline-block",
-  padding: "12px 24px",
+  padding: "14px 32px",
+  boxShadow: "0 2px 4px rgba(26, 122, 181, 0.3)",
 };
 
-const footer = {
-  color: "#374151",
-  fontSize: "16px",
-  lineHeight: "26px",
-  margin: "32px 0 16px 0",
+const footerDivider = {
+  borderColor: "#e5e7eb",
+  margin: "0 0 24px 0",
+};
+
+const footerSection = {
+  textAlign: "center" as const,
+  padding: "0 0 16px 0",
+};
+
+const footerLogo = {
+  borderRadius: "8px",
+  opacity: "0.8",
+};
+
+const footerBrand = {
+  fontSize: "14px",
+  fontWeight: "600",
+  color: "#1a7ab5",
+  margin: "8px 0 4px 0",
 };
 
 const footerText = {
-  color: "#6b7280",
-  fontSize: "14px",
-  lineHeight: "24px",
-  margin: "16px 0 0 0",
-  textAlign: "center" as const,
+  fontSize: "13px",
+  color: "#9ca3af",
+  margin: "0 0 12px 0",
+};
+
+const footerContact = {
+  fontSize: "12px",
+  color: "#9ca3af",
+  margin: "0 0 8px 0",
+};
+
+const footerLink = {
+  color: "#1a7ab5",
+  textDecoration: "underline",
+};
+
+const footerCopyright = {
+  fontSize: "11px",
+  color: "#d1d5db",
+  margin: "8px 0 0 0",
 };

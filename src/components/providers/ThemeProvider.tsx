@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
+import { updateUserTheme } from "@/lib/actions/users";
 
 type Theme = "light" | "dark" | "custom";
 
@@ -13,19 +14,26 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("light");
+  const [theme, setThemeState] = useState<Theme>(() => {
+    if (typeof window !== "undefined") {
+      const savedTheme = window.localStorage.getItem("theme");
+      if (savedTheme === "light" || savedTheme === "dark" || savedTheme === "custom") {
+        return savedTheme as Theme;
+      }
+    }
+    return "light";
+  });
   const { user, isLoaded } = useUser();
 
   useEffect(() => {
     async function fetchTheme() {
       if (isLoaded && user) {
         try {
-          // We can fetch user data here or use syncUser result
-          // For now, let's assume we have a getMyProfile action or similar
           const response = await fetch('/api/user/profile');
           const data = await response.json();
-          if (data.chatTheme) {
+          if (data.chatTheme && (data.chatTheme === "light" || data.chatTheme === "dark" || data.chatTheme === "custom")) {
             setThemeState(data.chatTheme as Theme);
+            window.localStorage.setItem("theme", data.chatTheme);
           }
         } catch (error) {
           console.error("Failed to fetch theme", error);
@@ -41,8 +49,22 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     root.classList.add(theme);
   }, [theme]);
 
+  const setTheme = async (newTheme: Theme) => {
+    setThemeState(newTheme);
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("theme", newTheme);
+    }
+    if (isLoaded && user) {
+      try {
+        await updateUserTheme(newTheme);
+      } catch (error) {
+        console.error("Failed to sync theme to DB", error);
+      }
+    }
+  };
+
   return (
-    <ThemeContext.Provider value={{ theme, setTheme: setThemeState }}>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );

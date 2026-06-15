@@ -68,10 +68,14 @@ function AppointmentsPage() {
                 appointmentType: appointmentType?.name,
                 duration: appointmentType?.duration,
                 price: appointmentType?.price,
+                doctorLocation: appointment.doctorLocation,
               }),
             });
 
-            if (!emailResponse.ok) console.error("Failed to send confirmation email");
+            if (!emailResponse.ok) {
+              const errData = await emailResponse.json().catch(() => ({}));
+              console.error("Failed to send confirmation email:", errData.details || errData.error || "Unknown error");
+            }
           } catch (error) {
             console.error("Error sending confirmation email:", error);
           }

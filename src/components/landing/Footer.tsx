@@ -8,13 +8,13 @@ function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <Image
-                src="/logo.png"
-                alt="Tooth Talk Logo"
+                src="/logo.svg"
+                alt="DentWise Logo"
                 width={32}
                 height={32}
-                className="w-8 h-8"
+                className="w-8 h-8 h-auto"
               />
-              <span className="font-semibold text-lg">Tooth Talk</span>
+              <span className="font-semibold text-lg">DentWise</span>
             </div>
             <p className="text-sm text-muted-foreground">
               AI-powered dental assistance that actually helps.
@@ -86,7 +86,7 @@ function Footer() {
         </div>
 
         <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; 2024 Tooth Talk. Built for real people with real dental questions.</p>
+          <p>&copy; 2024 DentWise. Built for real people with real dental questions.</p>
         </div>
       </div>
     </footer>

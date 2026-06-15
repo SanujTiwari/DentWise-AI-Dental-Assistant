@@ -5,12 +5,17 @@ import { prisma } from "../prisma";
 import { AppointmentStatus } from "@prisma/client";
 
 function transformAppointment(appointment: any) {
+  const doctorLocation = appointment.doctor.bio?.match(/practices at (.+?), Ranchi/)?.[1]
+    ? `${appointment.doctor.bio.match(/practices at (.+?), Ranchi/)?.[1]}, Ranchi, Jharkhand`
+    : "DentWise Dental, Ranchi, Jharkhand";
+
   return {
     ...appointment,
     patientName: `${appointment.user.firstName || ""} ${appointment.user.lastName || ""}`.trim(),
     patientEmail: appointment.user.email,
     doctorName: appointment.doctor.name,
     doctorImageUrl: appointment.doctor.imageUrl || "",
+    doctorLocation,
     date: appointment.date.toISOString().split("T")[0],
   };
 }
@@ -26,7 +31,7 @@ export async function getAppointments() {
             email: true,
           },
         },
-        doctor: { select: { name: true, imageUrl: true } },
+        doctor: { select: { name: true, imageUrl: true, bio: true } },
       },
       orderBy: { createdAt: "desc" },
     });
@@ -52,7 +57,7 @@ export async function getUserAppointments() {
       where: { userId: user.id },
       include: {
         user: { select: { firstName: true, lastName: true, email: true } },
-        doctor: { select: { name: true, imageUrl: true } },
+        doctor: { select: { name: true, imageUrl: true, bio: true } },
       },
       orderBy: [{ date: "asc" }, { time: "asc" }],
     });
@@ -152,7 +157,7 @@ export async function bookAppointment(input: BookAppointmentInput) {
             email: true,
           },
         },
-        doctor: { select: { name: true, imageUrl: true } },
+        doctor: { select: { name: true, imageUrl: true, bio: true } },
       },
     });
 

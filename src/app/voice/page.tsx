@@ -1,17 +1,9 @@
 import Navbar from "@/components/Navbar";
 import FeatureCards from "@/components/voice/FeatureCards";
-import ProPlanRequired from "@/components/voice/ProPlanRequired";
 import ChatWidget from "@/components/voice/VapiWidget";
 import WelcomeSection from "@/components/voice/WelcomeSection";
-import { auth } from "@clerk/nextjs/server";
 
-async function VoicePage() {
-  const { has } = await auth();
-
-  const hasProPlan = has({ plan: "ai_basic" }) || has({ plan: "ai_pro" });
-
-  if (!hasProPlan) return <ProPlanRequired />;
-
+function VoicePage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />

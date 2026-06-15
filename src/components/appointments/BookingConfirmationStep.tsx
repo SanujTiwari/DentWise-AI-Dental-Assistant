@@ -1,6 +1,7 @@
+import { useAvailableDoctors } from "@/hooks/use-doctors";
 import { APPOINTMENT_TYPES } from "@/lib/utils";
 import { Button } from "../ui/button";
-import { ChevronLeftIcon } from "lucide-react";
+import { ChevronLeftIcon, Loader2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import DoctorInfo from "./DoctorInfo";
 
@@ -26,6 +27,12 @@ function BookingConfirmationStep({
   onModify,
 }: BookingConfirmationStepProps) {
   const appointmentType = APPOINTMENT_TYPES.find((t) => t.id === selectedType);
+  const { data: doctors = [] } = useAvailableDoctors();
+  const doctor = doctors.find((d) => d.id === selectedDentistId);
+  const doctorLocation = doctor?.bio?.match(/practices at (.+?), Ranchi/)?.[1]
+    ? `${doctor.bio.match(/practices at (.+?), Ranchi/)?.[1]}, Ranchi, Jharkhand`
+    : "DentWise Dental, Ranchi, Jharkhand";
+
 
   return (
     <div className="space-y-6">
@@ -74,7 +81,7 @@ function BookingConfirmationStep({
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Location</p>
-              <p className="font-medium">Dental Center</p>
+              <p className="font-medium">{doctorLocation}</p>
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Cost</p>
@@ -89,8 +96,15 @@ function BookingConfirmationStep({
         <Button variant="outline" onClick={onModify}>
           Modify Appointment
         </Button>
-        <Button onClick={onConfirm} className="bg-primary" disabled={isBooking}>
-          {isBooking ? "Booking..." : "Confirm Booking"}
+        <Button onClick={onConfirm} className="bg-primary flex items-center gap-2" disabled={isBooking}>
+          {isBooking ? (
+            <>
+              <Loader2 className="w-4 h-4 animate-spin" />
+              Booking...
+            </>
+          ) : (
+            "Confirm Booking"
+          )}
         </Button>
       </div>
     </div>
