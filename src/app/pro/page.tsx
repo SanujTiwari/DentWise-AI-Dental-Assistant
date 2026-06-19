@@ -3,6 +3,8 @@ import { currentUser } from "@clerk/nextjs/server";
 import { CheckIcon, CrownIcon, SparklesIcon, ZapIcon } from "lucide-react";
 import { redirect } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 const plans = [
   {
     name: "Free",

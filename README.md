@@ -218,6 +218,6 @@ For contribution guidelines, please contact the development team.
 ## 📞 Support
 
 For issues and questions, please contact the development team or create an issue in the repository.
-📞: +91 7366891704 (Whatsapp Only)
 
+📞: +91 7366891704 (Whatsapp Only)
 

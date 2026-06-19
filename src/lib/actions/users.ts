@@ -62,6 +62,7 @@ export async function updateUserTheme(theme: string) {
 }
 
 export async function getUserById(id: string) {
+  if (!id) return null;
   try {
     return await prisma.user.findUnique({
       where: { id },
