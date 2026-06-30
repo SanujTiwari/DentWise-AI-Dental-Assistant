@@ -77,19 +77,14 @@ export default function RegisterPage() {
           {/* Animated decorative lines inside card */}
           <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:20px_20px]" />
           
-          {/* Top Logo & Slogan */}
-          <div className="relative z-10 flex justify-between items-center w-full">
-            <Link to="/" className="inline-flex items-center gap-2 group/logo">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-emerald-400 p-0.5 shadow-md group-hover/logo:scale-105 transition-transform duration-300">
-                <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-                  <img src="/logo.svg" alt="DentWise" className="w-5 h-5" />
-                </div>
-              </div>
-              <span className="text-base font-bold tracking-wider bg-gradient-to-r from-primary to-emerald-500 bg-clip-text text-transparent uppercase">
+          {/* Top Logo */}
+          <div className="relative z-10 flex items-center w-full">
+            <Link to="/" className="flex items-center gap-2 group">
+              <img src="/logo.svg" alt="DentWise Logo" className="w-8 h-auto select-none" />
+              <span className="text-sm font-bold tracking-wider text-primary uppercase">
                 DentWise
               </span>
             </Link>
-            <span className="text-xs text-muted-foreground/80 font-medium">AI Dental Companion</span>
           </div>
 
           {/* 3D Character Container */}
