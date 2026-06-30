@@ -96,25 +96,7 @@ export default function RegisterPage() {
             />
           </div>
 
-          {/* Prompt input styled container at the bottom */}
-          <div className="relative z-10 bg-background border border-border/40 backdrop-blur-md rounded-2xl p-4 shadow-lg space-y-3 transition-all duration-300 group-hover:shadow-xl">
-            <p className="text-xs text-foreground/85 font-medium leading-relaxed italic">
-              "Analyze oral health: How often should I get a professional dental cleanup, and is bleeding gums normal?"
-            </p>
-            <div className="flex justify-between items-center pt-2 border-t border-border/30">
-              <div className="flex gap-2">
-                <span className="w-7 h-7 rounded-full bg-muted flex items-center justify-center text-muted-foreground">
-                  <Plus className="w-3.5 h-3.5" />
-                </span>
-                <span className="w-7 h-7 rounded-full bg-muted flex items-center justify-center text-muted-foreground">
-                  <Mic className="w-3.5 h-3.5" />
-                </span>
-              </div>
-              <span className="w-7 h-7 rounded-full bg-black flex items-center justify-center text-white">
-                <ArrowRight className="w-3.5 h-3.5" />
-              </span>
-            </div>
-          </div>
+          
 
           {/* Pagination Carousel Dots */}
           <div className="flex justify-center gap-1.5 mt-4">
