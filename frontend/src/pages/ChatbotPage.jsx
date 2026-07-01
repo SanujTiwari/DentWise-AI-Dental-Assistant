@@ -3,7 +3,7 @@ import FeatureCards from "@/components/voice/FeatureCards";
 import ChatWidget from "@/components/voice/VapiWidget";
 import WelcomeSection from "@/components/voice/WelcomeSection";
 
-function VoicePage() {
+function ChatbotPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -17,4 +17,4 @@ function VoicePage() {
   );
 }
 
-export default VoicePage;
+export default ChatbotPage;

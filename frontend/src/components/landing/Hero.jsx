@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { CalendarIcon, MicIcon, StarIcon } from "lucide-react";
+import { CalendarIcon, MessageSquareIcon, StarIcon } from "lucide-react";
 
 function Hero() {
   return (
@@ -38,8 +38,8 @@ function Hero() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/register">
                   <Button size="lg">
-                    <MicIcon className="mr-2 size-5" />
-                    Try voice agent
+                    <MessageSquareIcon className="mr-2 size-5" />
+                    Try AI chatbot
                   </Button>
                 </Link>
                 <Link to="/register">

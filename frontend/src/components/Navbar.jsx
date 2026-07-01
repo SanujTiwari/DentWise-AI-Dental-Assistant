@@ -5,7 +5,7 @@ import {
   CalendarIcon,
   CrownIcon,
   HomeIcon,
-  MicIcon,
+  MessageSquareIcon,
   SunIcon,
   MoonIcon,
   SparklesIcon,
@@ -67,13 +67,13 @@ function Navbar() {
             </Link>
 
             <Link
-              to="/voice"
+              to="/chatbot"
               className={`flex items-center gap-2 transition-colors hover:text-foreground ${
-                pathname === "/voice" ? "text-foreground" : "text-muted-foreground"
+                pathname === "/chatbot" ? "text-foreground" : "text-muted-foreground"
               }`}
             >
-              <MicIcon className="w-4 h-4" />
-              <span className="hidden md:inline">Voice</span>
+              <MessageSquareIcon className="w-4 h-4" />
+              <span className="hidden md:inline">Chatbot</span>
             </Link>
 
             <Link

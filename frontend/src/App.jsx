@@ -11,7 +11,7 @@ import LoginPage from "@/pages/LoginPage";
 import RegisterPage from "@/pages/RegisterPage";
 import DashboardPage from "@/pages/DashboardPage";
 import AppointmentsPage from "@/pages/AppointmentsPage";
-import VoicePage from "@/pages/VoicePage";
+import ChatbotPage from "@/pages/ChatbotPage";
 import ProPage from "@/pages/ProPage";
 import ProfilePage from "@/pages/ProfilePage";
 import AdminPage from "@/pages/AdminPage";
@@ -49,10 +49,10 @@ export default function App() {
                 }
               />
               <Route
-                path="/voice"
+                path="/chatbot"
                 element={
                   <ProtectedRoute>
-                    <VoicePage />
+                    <ChatbotPage />
                   </ProtectedRoute>
                 }
               />

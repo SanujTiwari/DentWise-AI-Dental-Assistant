@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { CrownIcon, LockIcon, MicIcon } from "lucide-react";
+import { CrownIcon, LockIcon, MessageSquareIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 
 function ProPlanRequired() {
@@ -16,9 +16,9 @@ function ProPlanRequired() {
                 <span className="text-sm font-medium text-primary">Pro Feature</span>
               </div>
               <div>
-                <h1 className="text-4xl font-bold mb-2">Voice Assistant Access Required</h1>
+                <h1 className="text-4xl font-bold mb-2">AI Chatbot Access Required</h1>
                 <p className="text-muted-foreground">
-                  Upgrade to AI Pro or AI Basic to unlock unlimited voice consultations with our
+                  Upgrade to AI Pro or AI Basic to unlock unlimited chat consultations with our
                   AI dental assistant.
                 </p>
               </div>
@@ -26,7 +26,7 @@ function ProPlanRequired() {
 
             <div className="hidden lg:block">
               <div className="w-32 h-32 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center">
-                <MicIcon className="w-16 h-16 text-primary" />
+                <MessageSquareIcon className="w-16 h-16 text-primary" />
               </div>
             </div>
           </div>
@@ -42,14 +42,14 @@ function ProPlanRequired() {
 
           <h3 className="text-2xl font-bold mb-4">Upgrade Required</h3>
           <p className="text-muted-foreground mb-6">
-            The voice assistant feature is available to AI Pro and AI Basic subscribers. Get
-            instant dental advice through natural voice conversations.
+            The AI chatbot feature is available to AI Pro and AI Basic subscribers. Get
+            instant dental advice through interactive chat conversations.
           </p>
 
           <div className="space-y-4 mb-6">
             <div className="flex items-center gap-3 justify-center">
               <div className="w-2 h-2 bg-primary rounded-full"></div>
-              <span className="text-sm">24/7 voice consultations</span>
+              <span className="text-sm">24/7 chatbot consultations</span>
             </div>
             <div className="flex items-center gap-3 justify-center">
               <div className="w-2 h-2 bg-primary rounded-full"></div>

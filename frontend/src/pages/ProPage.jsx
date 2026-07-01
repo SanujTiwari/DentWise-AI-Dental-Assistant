@@ -10,7 +10,7 @@ const plans = [
     icon: ZapIcon,
     features: [
       "AI Chat Consultations",
-      "Voice Assistant Access",
+      "AI Chatbot Access",
       "Basic Dental Tips",
       "Appointment Booking",
     ],

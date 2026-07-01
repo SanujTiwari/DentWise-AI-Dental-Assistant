@@ -112,7 +112,7 @@ function PricingSection() {
                   </div>
                   <div className="flex items-start gap-3">
                     <CheckCircleIcon className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                    <span className="text-sm">10 AI voice calls per month</span>
+                    <span className="text-sm">10 AI chatbot sessions per month</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <CheckCircleIcon className="w-5 h-5 text-primary mt-0.5 shrink-0" />
@@ -128,7 +128,7 @@ function PricingSection() {
                   </div>
                   <div className="flex items-start gap-3">
                     <CheckCircleIcon className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                    <span className="text-sm">Call history & recordings</span>
+                    <span className="text-sm">Chat history & logs</span>
                   </div>
                 </div>
               </div>
@@ -164,7 +164,7 @@ function PricingSection() {
                   </div>
                   <div className="flex items-start gap-3">
                     <CheckCircleIcon className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                    <span className="text-sm">Unlimited AI voice calls</span>
+                    <span className="text-sm">Unlimited AI chat sessions</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <CheckCircleIcon className="w-5 h-5 text-primary mt-0.5 shrink-0" />

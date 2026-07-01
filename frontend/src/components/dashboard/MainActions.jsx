@@ -6,17 +6,17 @@ import { Link } from "react-router-dom";
 export default function MainActions() {
   return (
     <div className="grid md:grid-cols-2 gap-8 mb-12">
-      {/* AI Voice Assistant */}
+      {/* AI Chatbot */}
       <Card className="relative overflow-hidden group hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         <CardContent className="relative p-8">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <img src="/audio.png" alt="Voice AI" className="w-10" />
+              <img src="/brain.png" alt="Chatbot AI" className="w-10" />
             </div>
             <div>
-              <h3 className="text-2xl font-bold mb-2">AI Voice Assistant</h3>
-              <p className="text-muted-foreground">Get instant dental advice through voice calls</p>
+              <h3 className="text-2xl font-bold mb-2">AI Chatbot</h3>
+              <p className="text-muted-foreground">Get instant dental advice through text conversation</p>
             </div>
           </div>
 
@@ -35,10 +35,10 @@ export default function MainActions() {
             </div>
           </div>
 
-          <Link to="/voice" className="block mt-6">
+          <Link to="/chatbot" className="block mt-6">
             <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white font-semibold py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
               <MessageSquareIcon className="mr-2 h-5 w-5" />
-              Start Voice Call
+              Start Chat
             </Button>
           </Link>
         </CardContent>
