@@ -5,6 +5,7 @@ import ProgressSteps from "@/components/appointments/ProgressSteps";
 import TimeSelectionStep from "@/components/appointments/TimeSelectionStep";
 import Navbar from "@/components/Navbar";
 import { useBookAppointment, useUserAppointments } from "@/hooks/use-appointment";
+import { emailAPI } from "@/lib/api";
 import { APPOINTMENT_TYPES } from "@/lib/utils";
 import { format } from "date-fns";
 import { useState } from "react";
@@ -49,31 +50,17 @@ function AppointmentsPage() {
           setBookedAppointment(appointment);
 
           try {
-            // Call the Express mail route directly via proxy
-            const emailResponse = await fetch("/api/email/appointment-confirmation", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                ...(localStorage.getItem("token")
-                  ? { Authorization: `Bearer ${localStorage.getItem("token")}` }
-                  : {}),
-              },
-              body: JSON.stringify({
-                userEmail: appointment.patientEmail,
-                doctorName: appointment.doctorName,
-                appointmentDate: format(new Date(appointment.date), "EEEE, MMMM d, yyyy"),
-                appointmentTime: appointment.time,
-                appointmentType: appointmentType?.name,
-                duration: appointmentType?.duration,
-                price: appointmentType?.price,
-                doctorLocation: appointment.doctorLocation,
-              }),
+            // Call the Express mail route using the API client
+            await emailAPI.sendConfirmation({
+              userEmail: appointment.patientEmail,
+              doctorName: appointment.doctorName,
+              appointmentDate: format(new Date(appointment.date), "EEEE, MMMM d, yyyy"),
+              appointmentTime: appointment.time,
+              appointmentType: appointmentType?.name,
+              duration: appointmentType?.duration,
+              price: appointmentType?.price,
+              doctorLocation: appointment.doctorLocation,
             });
-
-            if (!emailResponse.ok) {
-              const errData = await emailResponse.json().catch(() => ({}));
-              console.error("Failed to send confirmation email:", errData.details || errData.error || "Unknown error");
-            }
           } catch (error) {
             console.error("Error sending confirmation email:", error);
           }
