@@ -1,4 +1,19 @@
-const API_BASE = import.meta.env.VITE_API_URL || "/api";
+const getApiBase = () => {
+  const envUrl = import.meta.env.VITE_API_URL;
+  if (!envUrl) return "/api";
+  
+  // Remove trailing slashes
+  let normalized = envUrl.replace(/\/+$/, "");
+  
+  // If it doesn't end with /api, append it
+  if (!normalized.endsWith("/api")) {
+    normalized = `${normalized}/api`;
+  }
+  
+  return normalized;
+};
+
+const API_BASE = getApiBase();
 
 async function apiFetch(url, options = {}) {
   const token = localStorage.getItem("token");
